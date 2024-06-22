@@ -1,0 +1,59 @@
+# PLACEHOLDER API : %smp_stats_deaths% %smp_stats_playtime% %smp_stats_level% %smp_stats_experience% %smp_stats_levelupxp% %smp_stats_exptolevel%
+# Staff Permission: staff.admin
+
+# Database
+username: root
+database: pickmc
+password: 'password'
+ip: localhost
+port: 3306
+
+AllowEndPortal: false
+
+# Server Colors
+PrimaryColor: '#65ED75'
+SecondaryColor: '#F3FCF4'
+ErrorColor: '#e03d3d'
+
+JoinMessage: "&e%player_name% has joined the server"
+QuitMessage: "&e%player_name% has left the server"
+
+# Scoreboard settings
+Enable-Scoreboard: true
+ScoreboardName: "%primary_color%Pick%secondary_color%MC"
+ScoreboardRefresh: 1
+Scoreboard:
+  - " "
+  - "#3C9546Ping: %secondary_color%%player_ping%"
+  - "#3C9546XYZ: %secondary_color%%player_x%, &r%player_y%, %player_z%"
+  - " "
+  - "%primary_color%Stats"
+  - "#3C9546Playtime: %secondary_color%%smp_stats_playtime%"
+  - "#3C9546Mob Kills: %secondary_color%%statistic_mob_kills%"
+  - "#3C9546Claimable Blocks: %secondary_color%%griefprevention_remainingclaims%"
+  - "#EF5D5DDeaths: %secondary_color%%smp_stats_deaths%"
+  - "#EF5D5DLast Death: %secondary_color%%statistic_time_since_death%"
+  - " "
+  - "#85EA7E&lOnline: %secondary_color%%server_online%"
+  - "#85EA7E&lTotal Joined: %secondary_color%%server_unique_joins%"
+  - " "
+
+# Scoreboard settings
+Bedrock-Enable-Scoreboard: true
+Bedrock-ScoreboardName: "%primary_color%Pick%secondary_color%MC"
+Bedrock-ScoreboardRefresh: 1
+Bedrock-Scoreboard:
+  - " "
+  - "#3C9546Ping: %secondary_color%%player_ping%"
+  - "#3C9546XYZ: %secondary_color%%player_x%, &r%player_y%, %player_z%"
+  - " "
+  - "%primary_color%Stats"
+  - "#3C9546Playtime: %secondary_color%%smp_stats_playtime%"
+  - "#3C9546Mob Kills: %secondary_color%%statistic_mob_kills%"
+  - "#3C9546Claimable Blocks: %secondary_color%%griefprevention_remainingclaims%"
+  - "#EF5D5DDeaths: %secondary_color%%smp_stats_deaths%"
+  - "#EF5D5DLast Death: %secondary_color%%statistic_time_since_death%"
+  - " "
+  - "#85EA7E&lOnline: %secondary_color%%server_online%"
+  - "#85EA7E&lTotal Joined: %secondary_color%%server_unique_joins%"
+  - " "

@@ -1,0 +1,91 @@
+name: PickSurvivalTwo
+version: '${project.version}'
+main: me.zxoir.picksurvivaltwo.PickSurvivalTwo
+api-version: '1.21'
+depend: [ PlaceholderAPI, Multiverse-Core, GriefPrevention ]
+commands:
+  discord:
+    description: "Get the discord link"
+    usage: "/discord"
+    permission: "picksurvivaltwo.discord"
+    aliases: [ dc ]
+  team:
+    description: "Team Command"
+    usage: "/team"
+    permission: "picksurvivaltwo.team"
+  back:
+    description: "Teleport back to your last location"
+    usage: "/back"
+    permission: "picksurvivaltwo.back"
+  spawn:
+    description: "Teleport to spawn"
+    usage: "/spawn"
+    permission: "picksurvivaltwo.spawn"
+  afk:
+    description: "Toggle AFK"
+    usage: "/afk"
+  survival:
+    description: "Main Command"
+    usage: "/survival"
+    aliases: ["smp", "pick", "pickmc"]
+  checkpoint:
+    description: "Set a checkpoint"
+    usage: "/checkpoint"
+    permission: "picksurvivaltwo.checkpoint"
+  refer:
+    description: "Refer a friend"
+    usage: "/refer <player>"
+    permission: "picksurvivaltwo.refer"
+  claimkick:
+    description: "Kick a player from your claim"
+    usage: "/claimkick <player>"
+    permission: "picksurvivaltwo.claimkick"
+  topdeaths:
+    description: "Get the top deaths"
+    usage: "/topdeaths"
+    aliases: [td, topdeath]
+    permission: "picksurvivaltwo.topdeaths"
+  topplaytime:
+    description: "Get the top playtime"
+    usage: "/topplaytime"
+    aliases: [topplaytimes]
+    permission: "picksurvivaltwo.topplaytime"
+  toprefers:
+    description: "Get the top refers"
+    usage: "/toprefers"
+    aliases: [toprefer, topreferral, topreferrals, toprefferal, toprefferals]
+    permission: "picksurvivaltwo.toprefers"
+permissions:
+    picksurvivaltwo.topdeaths:
+        description: "Allows access to the topdeaths command"
+        default: true
+    picksurvivaltwo.topplaytime:
+        description: "Allows access to the topplaytime command"
+        default: true
+    picksurvivaltwo.toprefers:
+        description: "Allows access to the toprefers command"
+        default: true
+    picksurvivaltwo.claimkick:
+        description: "Allows access to the claimkick command"
+        default: true
+    picksurvivaltwo.discord:
+        description: "Allows access to the discord command"
+        default: true
+    picksurvivaltwo.team:
+        description: "Allows access to the team command"
+        default: true
+    picksurvivaltwo.back:
+        description: "Allows access to the back command"
+        default: true
+    picksurvivaltwo.spawn:
+        description: "Allows access to the spawn command"
+        default: true
+    picksurvivaltwo.checkpoint:
+      description: "Allows access to the checkpoint command"
+      default: true
+    picksurvivaltwo.refer:
+        description: "Allows access to the refer command"
+        default: true
+    picksurvivaltwo.staff:
+        description: "Allows access to the staff command"
+        default: op
