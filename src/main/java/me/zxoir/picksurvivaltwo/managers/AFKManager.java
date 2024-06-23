@@ -75,7 +75,6 @@ public class AFKManager {
         PlayerProfile profile = PlayerProfileManager.getPlayerProfile(uuid);
         PlayerAFKEvent afkEvent = new PlayerAFKEvent(player, afk, profile);
         afkTitle(player, afk);
-        ScoreboardManager.showScoreboard(player, !afk);
         CommonUtils.runTaskSync(() -> Bukkit.getServer().getPluginManager().callEvent(afkEvent));
     }
 

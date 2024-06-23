@@ -5,7 +5,6 @@ import me.ryanhamshire.GriefPrevention.ClaimPermission;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import me.zxoir.picksurvivaltwo.util.Colors;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -72,46 +71,11 @@ public class ClaimKickCommand implements CommandExecutor {
             return true;
         }
 
-        // Find a safe location outside the claim
-        Location safeLocation = claim.getGreaterBoundaryCorner().clone();
-        safeLocation.add(1, 0, 1); // Adjust the location to be outside the claim
-
-        // Get a non-colliding position for teleporting
-        safeLocation = findSafeLocation(safeLocation);
-
         // Teleport the target player outside the claim
-        targetPlayer.teleport(safeLocation);
+        targetPlayer.teleport(claim.getGreaterBoundaryCorner());
 
         player.sendMessage(Colors.primary + "You have kicked " + Colors.secondary + targetPlayer.getName() + Colors.primary + " off your claim.");
         return true;
-    }
-
-    // Helper method to find a safe location around the center
-    private Location findSafeLocation(@NotNull Location center) {
-        int searchRadius = 10; // Adjust this as needed
-        int maxAttempts = 50;
-        Location safeLocation = center.clone();
-
-        for (int attempt = 0; attempt < maxAttempts; attempt++) {
-            if (safeLocation.getBlockY() <= 0 || !safeLocation.getChunk().isLoaded() || !safeLocation.getChunk().isSlimeChunk()) {
-                // If the location is too low or in an unloaded chunk or a slime chunk, adjust it
-                safeLocation = center.clone().add(Math.random() * searchRadius * 2 - searchRadius, 0, Math.random() * searchRadius * 2 - searchRadius);
-                continue;
-            }
-
-            if (safeLocation.getWorld().getBlockAt(safeLocation).getType().isAir()) {
-                // If the location is in the air, check if it's safe for teleportation
-                safeLocation = safeLocation.getWorld().getHighestBlockAt(safeLocation).getLocation();
-                if (safeLocation.getBlock().getType().isAir() && safeLocation.add(0, 1, 0).getBlock().getType().isAir()) {
-                    break; // Found a safe location
-                }
-            }
-
-            // Adjust the location for the next attempt
-            safeLocation = center.clone().add(Math.random() * searchRadius * 2 - searchRadius, 0, Math.random() * searchRadius * 2 - searchRadius);
-        }
-
-        return safeLocation;
     }
 
 }

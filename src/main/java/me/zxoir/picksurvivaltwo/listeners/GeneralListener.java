@@ -86,11 +86,13 @@ public class GeneralListener implements Listener {
 
         HashSet<Player> mentionedPlayers = new HashSet<>();
         for (String messageSplit : message.split(" ")) {
-            Player player = Bukkit.getPlayer(messageSplit);
-            if (player != null && player.getName().equalsIgnoreCase(messageSplit)) {
-                mentionedPlayers.add(player);
-                message = message.replace(messageSplit, player.getName());
-            }
+            Player player = Bukkit.getPlayerExact(messageSplit);
+
+            if (player == null || player.getName().equalsIgnoreCase(event.getPlayer().getName()))
+                continue;
+
+            mentionedPlayers.add(player);
+            message = message.replace(messageSplit, player.getName());
         }
 
         if (mentionedPlayers.isEmpty())
@@ -100,7 +102,7 @@ public class GeneralListener implements Listener {
             mentioned.playSound(mentioned.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
 
             if (AFKManager.isAFK(mentioned.getUniqueId()))
-                CommonUtils.runTaskSync(() -> event.getPlayer().sendMessage(Colors.secondary + mentioned.getName() + NamedTextColor.GRAY + " is AFK and might not respond"));
+                CommonUtils.runTaskSync(() -> event.getPlayer().sendMessage(colorize(Colors.secondary + mentioned.getName() + NamedTextColor.GRAY.asHexString() + " is AFK and might not respond")));
         }
 
     }

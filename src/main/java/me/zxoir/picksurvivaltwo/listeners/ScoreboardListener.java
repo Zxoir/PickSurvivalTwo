@@ -1,6 +1,7 @@
 package me.zxoir.picksurvivaltwo.listeners;
 
 import me.zxoir.picksurvivaltwo.PickSurvivalTwo;
+import me.zxoir.picksurvivaltwo.events.PlayerAFKEvent;
 import me.zxoir.picksurvivaltwo.managers.ConfigManager;
 import me.zxoir.picksurvivaltwo.managers.ScoreboardManager;
 import org.bukkit.Bukkit;
@@ -27,6 +28,16 @@ public class ScoreboardListener implements Listener {
             return;
 
         Bukkit.getScheduler().runTaskLaterAsynchronously(PickSurvivalTwo.getPlugin(PickSurvivalTwo.class), () -> ScoreboardManager.showScoreboard(player, true), 5L);
+    }
+
+    @EventHandler
+    public void onAfk(@NotNull PlayerAFKEvent event) {
+        Player player = event.getPlayer();
+
+        if (!ConfigManager.isEnableScoreboard())
+            return;
+
+        ScoreboardManager.showScoreboard(player, !event.isAFK());
     }
 
     @EventHandler

@@ -2,7 +2,6 @@ package me.zxoir.picksurvivaltwo.listeners;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.zxoir.picksurvivaltwo.data.PlayerProfile;
 import me.zxoir.picksurvivaltwo.events.PlayerAFKEvent;
 import me.zxoir.picksurvivaltwo.managers.PlayerProfileDatabaseManager;
 import me.zxoir.picksurvivaltwo.managers.PlayerProfileManager;

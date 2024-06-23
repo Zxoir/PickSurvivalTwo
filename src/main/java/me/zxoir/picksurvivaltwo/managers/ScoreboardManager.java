@@ -3,7 +3,6 @@ package me.zxoir.picksurvivaltwo.managers;
 import lombok.Setter;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.zxoir.picksurvivaltwo.util.CommonUtils;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -21,10 +20,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 6/20/2024
  */
 public class ScoreboardManager {
-    //private static final
     private static final Set<UUID> playerScoreboards = ConcurrentHashMap.newKeySet();
     private static final ConcurrentHashMap<Integer, Integer> javaBoardCache = new ConcurrentHashMap<>();
-    private static final ConcurrentHashMap<Integer, Integer>  bedrockBoardCache = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<Integer, Integer> bedrockBoardCache = new ConcurrentHashMap<>();
 
     @Setter
     private static boolean hasCachedBoards = false;
@@ -121,7 +119,7 @@ public class ScoreboardManager {
         }
     }
 
-    private static boolean containsPlaceholders(String line) {
+    private static boolean containsPlaceholders(@NotNull String line) {
         String processedLine = line.replace("%secondary_color%", "")
                 .replace("%primary_color%", "")
                 .replace("%error_color%", "");

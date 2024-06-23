@@ -7,13 +7,14 @@ import me.zxoir.picksurvivaltwo.managers.ConfigManager;
 import me.zxoir.picksurvivaltwo.managers.PlayerProfileManager;
 import me.zxoir.picksurvivaltwo.util.Colors;
 import me.zxoir.picksurvivaltwo.util.GlobalCache;
-import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+
+import static me.zxoir.picksurvivaltwo.util.Colors.colorize;
 
 /**
  * MIT License Copyright (c) 2022 Zxoir
@@ -88,7 +89,7 @@ public class MainCommand implements CommandExecutor {
 
         }
 
-        sender.sendMessage(Colors.primary + "\n#E5FF65SMP " + TextDecoration.BOLD + "List of Commands\n" + Colors.primary + "/SMP setFirstJoinKit " + Colors.secondary + "Set First Join Kit\n" + Colors.primary + "/SMP getFirstJoinKit " + Colors.secondary + "Get First Join Kit");
+        sender.sendMessage(colorize(Colors.primary + "\n#E5FF65SMP &lList of Commands\n" + Colors.primary + "/SMP setFirstJoinKit " + Colors.secondary + "Set First Join Kit\n" + Colors.primary + "/SMP getFirstJoinKit " + Colors.secondary + "Get First Join Kit"));
         return true;
     }
 }
