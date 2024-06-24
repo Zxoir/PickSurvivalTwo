@@ -31,9 +31,34 @@ public class MainCompleter implements TabCompleter {
             return completer;
 
         if (args.length == 1) {
-            completer.add("Reload");
+            completer.add("reload");
             completer.add("setFirstJoinKit");
             completer.add("getFirstJoinKit");
+            completer.add("stats");
+
+            return CommonUtils.smartComplete(args, completer);
+        }
+
+        if (args.length == 2 && args[0].equalsIgnoreCase("stats")) {
+            completer.add("edit");
+
+            return CommonUtils.smartComplete(args, completer);
+        }
+
+        if (args.length == 3 && args[0].equalsIgnoreCase("stats") && args[1].equalsIgnoreCase("edit")){
+            completer.add("deaths");
+
+            return CommonUtils.smartComplete(args, completer);
+        }
+
+        if (args.length == 4 && args[0].equalsIgnoreCase("stats") && args[1].equalsIgnoreCase("edit") && args[2].equalsIgnoreCase("deaths")) {
+            completer.add("<player>");
+
+            return CommonUtils.smartComplete(args, completer);
+        }
+
+        if (args.length == 5 && args[0].equalsIgnoreCase("stats") && args[1].equalsIgnoreCase("edit") && args[2].equalsIgnoreCase("deaths")){
+            completer.add("<amount>");
 
             return CommonUtils.smartComplete(args, completer);
         }
