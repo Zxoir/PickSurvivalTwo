@@ -2,6 +2,7 @@ package me.zxoir.picksurvivaltwo.commands.tabcompleters;
 
 import me.zxoir.picksurvivaltwo.util.CommonUtils;
 import me.zxoir.picksurvivaltwo.util.GlobalCache;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -53,6 +54,7 @@ public class MainCompleter implements TabCompleter {
 
         if (args.length == 4 && args[0].equalsIgnoreCase("stats") && args[1].equalsIgnoreCase("edit") && args[2].equalsIgnoreCase("deaths")) {
             completer.add("<player>");
+            Bukkit.getOnlinePlayers().forEach(online -> completer.add(online.getName()));
 
             return CommonUtils.smartComplete(args, completer);
         }
