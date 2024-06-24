@@ -46,7 +46,7 @@ public class MainCompleter implements TabCompleter {
             return CommonUtils.smartComplete(args, completer);
         }
 
-        if (args.length == 3 && args[0].equalsIgnoreCase("stats") && args[1].equalsIgnoreCase("edit")){
+        if (args.length == 3 && args[0].equalsIgnoreCase("stats") && args[1].equalsIgnoreCase("edit")) {
             completer.add("deaths");
 
             return CommonUtils.smartComplete(args, completer);
@@ -59,7 +59,7 @@ public class MainCompleter implements TabCompleter {
             return CommonUtils.smartComplete(args, completer);
         }
 
-        if (args.length == 5 && args[0].equalsIgnoreCase("stats") && args[1].equalsIgnoreCase("edit") && args[2].equalsIgnoreCase("deaths")){
+        if (args.length == 5 && args[0].equalsIgnoreCase("stats") && args[1].equalsIgnoreCase("edit") && args[2].equalsIgnoreCase("deaths")) {
             completer.add("<amount>");
 
             return CommonUtils.smartComplete(args, completer);
