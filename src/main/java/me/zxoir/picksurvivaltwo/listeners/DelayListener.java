@@ -24,8 +24,6 @@ import static me.zxoir.picksurvivaltwo.util.Colors.colorize;
 public class DelayListener implements Listener {
     ConcurrentHashMap<UUID, Long> delayedChatPlayers = new ConcurrentHashMap<>();
     long chatDelayInMillisecond = 500;
-    ConcurrentHashMap<UUID, Long> delayedCommandPlayers = new ConcurrentHashMap<>();
-    long commandDelayInMillisecond = 1000;
 
     @EventHandler
     public void onChat(@NotNull AsyncChatEvent event) {
@@ -48,38 +46,13 @@ public class DelayListener implements Listener {
         });
     }
 
-    @EventHandler(ignoreCancelled = true)
-    public void onCommandExecute(@NotNull PlayerCommandPreprocessEvent event) {
-        Player player = event.getPlayer();
-
-        Long previousKey = delayedCommandPlayers.putIfAbsent(player.getUniqueId(), System.currentTimeMillis());
-
-        if (previousKey == null || player.isOp())
-            return;
-
-        delayedCommandPlayers.computeIfPresent(player.getUniqueId(), (key, val) -> {
-            long lastCommandTime = System.currentTimeMillis() - val;
-
-            if (lastCommandTime > commandDelayInMillisecond)
-                return null;
-
-            event.setCancelled(true);
-            player.sendMessage(colorize(Colors.error + "Please wait to use another command"));
-            return val;
-        });
-    }
-
     @EventHandler
     public void onQuit(@NotNull PlayerQuitEvent event) {
-        Player player = event.getPlayer();
-        delayedChatPlayers.remove(player.getUniqueId());
-        delayedCommandPlayers.remove(player.getUniqueId());
+        delayedChatPlayers.remove(event.getPlayer().getUniqueId());
     }
 
     @EventHandler
     public void onKick(@NotNull PlayerKickEvent event) {
-        Player player = event.getPlayer();
-        delayedChatPlayers.remove(player.getUniqueId());
-        delayedCommandPlayers.remove(player.getUniqueId());
+        delayedChatPlayers.remove(event.getPlayer().getUniqueId());
     }
 }
