@@ -24,6 +24,7 @@ public class TimeManager {
      * @param input The time duration string (e.g., "5 minutes").
      * @return The equivalent duration in milliseconds, or -1 if the input is invalid.
      */
+    @SuppressWarnings("unused")
     public static long toMillisecond(String input) {
         input = WHITESPACE_PATTERN.matcher(input).replaceAll("");
 
@@ -113,13 +114,13 @@ public class TimeManager {
         seconds %= 60;
 
         if (days > 0) {
-            formattedTime.append(days).append(compact ? "d" : (days != 1 ? " days" : " day"));
+            formattedTime.append(days).append(compact ? "d " : (days != 1 ? " days" : " day"));
             if (!compact && (hours > 0 || minutes > 0 || (withSecs && seconds > 0)) && !formattedTime.toString().endsWith(" ")) {
                 formattedTime.append(" ");
             }
         }
         if (hours > 0) {
-            formattedTime.append(hours).append(compact ? "h" : (hours != 1 ? " hours" : " hour"));
+            formattedTime.append(hours).append(compact ? "h " : (hours != 1 ? " hours" : " hour"));
             if (!compact && (minutes > 0 || (withSecs && seconds > 0)) && !formattedTime.toString().endsWith(" ")) {
                 formattedTime.append(" ");
             }
@@ -128,7 +129,7 @@ public class TimeManager {
             if ((days > 0 || hours > 0) && !formattedTime.isEmpty() && !compact) {
                 formattedTime.append("and ");
             }
-            formattedTime.append(minutes).append(compact ? "m" : (minutes != 1 ? " minutes" : " minute"));
+            formattedTime.append(minutes).append(compact ? "m " : (minutes != 1 ? " minutes" : " minute"));
             if (!compact && (withSecs && seconds > 0) && !formattedTime.toString().endsWith(" ")) {
                 formattedTime.append(" ");
             }

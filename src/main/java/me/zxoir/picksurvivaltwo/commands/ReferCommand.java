@@ -33,7 +33,7 @@ import static me.zxoir.picksurvivaltwo.util.Colors.colorize;
 public class ReferCommand implements CommandExecutor {
     @Getter
     final static String REFER_PREFIX = colorize("&6Refer #414438» &r");
-    final static int REFER_RANK_GOAL = 10;
+    final static int REFER_RANK_GOAL = 5;
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] args) {
@@ -44,37 +44,37 @@ public class ReferCommand implements CommandExecutor {
             PlayerProfile profile = PlayerProfileManager.getPlayerProfile(player.getUniqueId());
 
             if (args[0].equalsIgnoreCase("count")) {
-                player.sendMessage(REFER_PREFIX + Colors.primary + "You have referred " + Colors.secondary + profile.getStats().getPlayersReferred() + " players");
+                player.sendMessage(colorize(REFER_PREFIX + Colors.primary + "You have referred " + Colors.secondary + profile.getStats().getPlayersReferred() + " players"));
             } else {
 
                 if (profile.getStats().isReferred()) {
-                    player.sendMessage(REFER_PREFIX + Colors.error + "You have already been referred by a player.");
+                    player.sendMessage(colorize(REFER_PREFIX + Colors.error + "You have already been referred by a player."));
                     return true;
                 }
 
                 OfflinePlayer targetPlayer = Bukkit.getOfflinePlayer(args[0]);
                 if (!PlayerProfileManager.isPlayerInDatabase(targetPlayer.getUniqueId())) {
-                    player.sendMessage(REFER_PREFIX + Colors.error + "That player hasn't played on PickMc.");
+                    player.sendMessage(colorize(REFER_PREFIX + Colors.error + "That player hasn't played on PickMc."));
                     return true;
                 }
 
                 if (targetPlayer.getUniqueId().equals(player.getUniqueId())) {
-                    player.sendMessage(REFER_PREFIX + Colors.error + "You can't refer yourself.");
+                    player.sendMessage(colorize(REFER_PREFIX + Colors.error + "You can't refer yourself."));
                     return true;
                 }
 
                 PlayerProfile targetProfile = PlayerProfileManager.getPlayerProfile(targetPlayer.getUniqueId());
                 targetProfile.getStats().updatePlayersReferred(1);
                 profile.getStats().setReferred(true);
-                player.sendMessage(REFER_PREFIX + Colors.primary + "You have been referred by " + Colors.secondary + targetPlayer.getName());
+                player.sendMessage(colorize(REFER_PREFIX + Colors.primary + "You have been referred by " + Colors.secondary + targetPlayer.getName()));
                 boolean isOnline = targetPlayer.isOnline() && targetPlayer.getPlayer() != null;
 
                 if (isOnline)
-                    targetPlayer.getPlayer().sendMessage(REFER_PREFIX + Colors.primary + "Thank you for referring " + Colors.secondary + player.getName() + Colors.primary + " to the server!");
+                    targetPlayer.getPlayer().sendMessage(colorize(REFER_PREFIX + Colors.primary + "Thank you for referring " + Colors.secondary + player.getName() + Colors.primary + " to the server!"));
 
                 if (targetProfile.getStats().getPlayersReferred() == REFER_RANK_GOAL) {
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + targetPlayer.getName() + " parent add inf");
-                    Bukkit.broadcast(LegacyComponentSerializer.legacySection().deserialize(REFER_PREFIX + Colors.secondary + targetPlayer.getName() + Colors.primary + " has been awarded #AFA9EFInfluencer Rank " + Colors.primary + "for supporting the server!"));
+                    Bukkit.broadcast(LegacyComponentSerializer.legacySection().deserialize(colorize(REFER_PREFIX + Colors.secondary + targetPlayer.getName() + Colors.primary + " has been awarded #AFA9EFInfluencer Rank " + Colors.primary + "for supporting the server!")));
 
                     if (isOnline) {
                         Title.Times times = Title.Times.times(Duration.ofSeconds(1), Duration.ofSeconds(3), Duration.ofSeconds(1));
